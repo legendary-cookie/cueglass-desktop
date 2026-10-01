@@ -1,0 +1,154 @@
+{
+  "runtimeVersion": "1.9.2",
+  "runtimeSource": "https://github.com/ggml-org/whisper.cpp/releases/download/v1.9.2/whisper-bin-x64.zip",
+  "licenses": [
+    "MIT",
+    "zlib"
+  ],
+  "runtimeArchiveSHA256": "49dcc16de826f20bd53d44f947a1ae49dfa81f86cad67a64d80820cb192d674a",
+  "files": [
+    {
+      "name": "ggml-base-q5_1.bin",
+      "bytes": 59707625,
+      "sha256": "422f1ae452ade6f30a004d7e5c6a43195e4433bc370bf23fac9cc591f01a8898"
+    },
+    {
+      "name": "ggml-base.dll",
+      "bytes": 666624,
+      "sha256": "1482359d921b4c1b183d49db1d770f9b5e90d86a618b8b648d4845c2471ad6b0"
+    },
+    {
+      "name": "ggml-cpu-alderlake.dll",
+      "bytes": 809984,
+      "sha256": "d1c5411561361f7ce71ff8455ecf01f666f581b0608fa91a1dfe7d3fd6a25bd1"
+    },
+    {
+      "name": "ggml-cpu-cannonlake.dll",
+      "bytes": 853504,
+      "sha256": "2ef36f05fa252ff4fdcb8d42ebce1ceba4f3d3de12b93bed15bdee6237dccd63"
+    },
+    {
+      "name": "ggml-cpu-cascadelake.dll",
+      "bytes": 850944,
+      "sha256": "505899aaf3f99c5d714361640f561458ea97f8a09eb0614568a66bead2115cb0"
+    },
+    {
+      "name": "ggml-cpu-haswell.dll",
+      "bytes": 811008,
+      "sha256": "f8cf2f35a06498d783d77fde42004dd54d2f8236b0d42ac323b94bba65a603c4"
+    },
+    {
+      "name": "ggml-cpu-icelake.dll",
+      "bytes": 850944,
+      "sha256": "78ad143ee2e674d037b4840ef33b5748a0659762a26e0ae2b621c4f9451cbde8"
+    },
+    {
+      "name": "ggml-cpu-sandybridge.dll",
+      "bytes": 803328,
+      "sha256": "ee47db7dc40fb30eca73e62a05306059c2c3c42aecddf2e8d6ad7e530069b815"
+    },
+    {
+      "name": "ggml-cpu-skylakex.dll",
+      "bytes": 852992,
+      "sha256": "164e2793897944a43ee071ce6c0b09018088bdf4dd8b14ac0755c58849cf8c50"
+    },
+    {
+      "name": "ggml-cpu-sse42.dll",
+      "bytes": 790016,
+      "sha256": "7318a9a3b95a85b2453c437b274412bbbae89e5ecdf5babb19b99edc06ded063"
+    },
+    {
+      "name": "ggml-cpu-x64.dll",
+      "bytes": 794112,
+      "sha256": "af0f1c2f28ff9e3f472481dd969907bda85fa39d4fde17617d4bb0b389301b60"
+    },
+    {
+      "name": "ggml-small-q5_1.bin",
+      "bytes": 190085487,
+      "sha256": "ae85e4a935d7a567bd102fe55afc16bb595bdb618e11b2fc7591bc08120411bb"
+    },
+    {
+      "name": "ggml-tiny-q5_1.bin",
+      "bytes": 32152673,
+      "sha256": "818710568da3ca15689e31a743197b520007872ff9576237bda97bd1b469c3d7"
+    },
+    {
+      "name": "ggml.dll",
+      "bytes": 67584,
+      "sha256": "894c6237ee7849843213906a2b6a0b371aaa6234048d465f206d910ae846fafb"
+    },
+    {
+      "name": "LICENSE-SDL2.txt",
+      "bytes": 884,
+      "sha256": "9928507f684c1965d07f2b6ef4b4723d5efc2f6b4ab731f743a413c51c319927"
+    },
+    {
+      "name": "LICENSE-whisper.cpp.txt",
+      "bytes": 1078,
+      "sha256": "94f29bbed6a22c35b992c5c6ebf0e7c92f13b836b90f36f461c9cf2f0f1d010d"
+    },
+    {
+      "name": "LICENSE-Whisper.txt",
+      "bytes": 1063,
+      "sha256": "b5d65a59060e68c4ff940e1eddfa6f94b2d68fdf58ed7f4dd57721c997e35e9d"
+    },
+    {
+      "name": "parakeet.dll",
+      "bytes": 581632,
+      "sha256": "567c56a3c9b7383982e5777964f37f9f3cb930ef4a7ca907477e4e955f1cd0a4"
+    },
+    {
+      "name": "SDL2.dll",
+      "bytes": 2500096,
+      "sha256": "de23db1694a3c7a4a735e7ecd3d214b2023cc2267922c6c35d30c7fc7370d677"
+    },
+    {
+      "name": "whisper-cli.exe",
+      "bytes": 479232,
+      "sha256": "95e3c0b0e778ad9499eb0125f97c1dcf437dd9eb4ea77050b043574f93c2631d"
+    },
+    {
+      "name": "whisper.dll",
+      "bytes": 1368064,
+      "sha256": "792fc523c7ad16e6b9c348e30ad5e5f591165cbcf6a80ca8d0db02a38ce3eea2"
+    }
+  ],
+  "model": "base multilingual Q5_1",
+  "modelBytes": 281945785,
+  "defaultModel": "base-q5_1",
+  "models": [
+    {
+      "id": "base-q5_1",
+      "name": "base · Q5_1",
+      "file": "ggml-base-q5_1.bin",
+      "url": "https://huggingface.co/ggerganov/whisper.cpp/resolve/5359861c739e955e79d9a303bcbc70fb988958b1/ggml-base-q5_1.bin",
+      "bytes": 59707625,
+      "sha256": "422f1ae452ade6f30a004d7e5c6a43195e4433bc370bf23fac9cc591f01a8898",
+      "language": "Multilingual (auto detect)",
+      "tradeoff": "Balanced CPU default; better accuracy than tiny. About 388 MB reference memory before quantization.",
+      "license": "MIT"
+    },
+    {
+      "id": "small-q5_1",
+      "name": "small · Q5_1",
+      "file": "ggml-small-q5_1.bin",
+      "url": "https://huggingface.co/ggerganov/whisper.cpp/resolve/5359861c739e955e79d9a303bcbc70fb988958b1/ggml-small-q5_1.bin",
+      "bytes": 190085487,
+      "sha256": "ae85e4a935d7a567bd102fe55afc16bb595bdb618e11b2fc7591bc08120411bb",
+      "language": "Multilingual (auto detect)",
+      "tradeoff": "Better accuracy, slower CPU processing and more RAM. About 852 MB reference memory before quantization.",
+      "license": "MIT"
+    },
+    {
+      "id": "tiny-q5_1",
+      "name": "tiny · Q5_1",
+      "file": "ggml-tiny-q5_1.bin",
+      "url": "https://huggingface.co/ggerganov/whisper.cpp/resolve/5359861c739e955e79d9a303bcbc70fb988958b1/ggml-tiny-q5_1.bin",
+      "bytes": 32152673,
+      "sha256": "818710568da3ca15689e31a743197b520007872ff9576237bda97bd1b469c3d7",
+      "language": "Multilingual (auto detect)",
+      "tradeoff": "Fastest and smallest; weaker accents/noise accuracy. About 273 MB reference memory before quantization.",
+      "license": "MIT"
+    }
+  ]
+}

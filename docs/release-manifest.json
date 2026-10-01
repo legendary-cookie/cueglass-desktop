@@ -1,0 +1,79 @@
+{
+  "version": "0.6.0",
+  "platform": "Windows x64",
+  "signed": false,
+  "installer": "per-user NSIS, zlib compression, no auto-launch",
+  "payloadFiles": 115,
+  "payloadBytes": 701764914,
+  "models": [
+    {
+      "id": "base-q5_1",
+      "name": "base · Q5_1",
+      "file": "ggml-base-q5_1.bin",
+      "url": "https://huggingface.co/ggerganov/whisper.cpp/resolve/5359861c739e955e79d9a303bcbc70fb988958b1/ggml-base-q5_1.bin",
+      "bytes": 59707625,
+      "sha256": "422f1ae452ade6f30a004d7e5c6a43195e4433bc370bf23fac9cc591f01a8898",
+      "language": "Multilingual (auto detect)",
+      "tradeoff": "Balanced CPU default; better accuracy than tiny. About 388 MB reference memory before quantization.",
+      "license": "MIT"
+    },
+    {
+      "id": "small-q5_1",
+      "name": "small · Q5_1",
+      "file": "ggml-small-q5_1.bin",
+      "url": "https://huggingface.co/ggerganov/whisper.cpp/resolve/5359861c739e955e79d9a303bcbc70fb988958b1/ggml-small-q5_1.bin",
+      "bytes": 190085487,
+      "sha256": "ae85e4a935d7a567bd102fe55afc16bb595bdb618e11b2fc7591bc08120411bb",
+      "language": "Multilingual (auto detect)",
+      "tradeoff": "Better accuracy, slower CPU processing and more RAM. About 852 MB reference memory before quantization.",
+      "license": "MIT"
+    },
+    {
+      "id": "tiny-q5_1",
+      "name": "tiny · Q5_1",
+      "file": "ggml-tiny-q5_1.bin",
+      "url": "https://huggingface.co/ggerganov/whisper.cpp/resolve/5359861c739e955e79d9a303bcbc70fb988958b1/ggml-tiny-q5_1.bin",
+      "bytes": 32152673,
+      "sha256": "818710568da3ca15689e31a743197b520007872ff9576237bda97bd1b469c3d7",
+      "language": "Multilingual (auto detect)",
+      "tradeoff": "Fastest and smallest; weaker accents/noise accuracy. About 273 MB reference memory before quantization.",
+      "license": "MIT"
+    }
+  ],
+  "modelBytes": 281945785,
+  "defaultModel": "base-q5_1",
+  "runtime": {
+    "whisperCpp": "1.9.2",
+    "electron": "44.5.1",
+    "jose": "6.2.12"
+  },
+  "assets": [
+    {
+      "name": "Cueglass-Setup-0.6.0-x64.exe",
+      "bytes": 432752656,
+      "sha256": "98be8680056816db36818030a7a0bfedade31046d331d441f1a1ee57c7ef6361"
+    },
+    {
+      "name": "ffmpeg-2b68d2babae73714846961fb0ee47e3b3d2e39a9-source.tar.gz",
+      "bytes": 18820439,
+      "sha256": "93f7a213a3a530d80563404bce90cd65307ebb0c9a7673784b8d1f1c108ad446"
+    },
+    {
+      "name": "electron-44.5.1-source-and-patches.zip",
+      "bytes": 21946649,
+      "sha256": "5d7a06e810ca090c1046bffe5f5bb67ee358ac747e15bbb52737d858f6c6ff0c"
+    }
+  ],
+  "sourceLocations": {
+    "ffmpeg": "https://chromium.googlesource.com/chromium/third_party/ffmpeg/+/2b68d2babae73714846961fb0ee47e3b3d2e39a9/",
+    "electron": "https://github.com/electron/electron/tree/v44.5.1"
+  },
+  "validation": {
+    "unitTests": 85,
+    "installerLifecycle": "passed isolated namespace/target",
+    "threeBundledModels": "passed synthetic/offline",
+    "streaming": "passed mocks",
+    "liveProviderOAuth": "unverified",
+    "recipientMeetingCapture": "unverified"
+  }
+}
