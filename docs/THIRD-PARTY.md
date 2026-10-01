@@ -1,5 +1,7 @@
 # Redistribution notices and source
 
+Original Cueglass source and documentation are now available under the [MIT License](../LICENSE). That license does not replace the third-party licenses below. The public snapshot excludes private development history and user data.
+
 Cueglass distributes original third-party runtimes/models with their notices. Their names do not imply sponsorship. Public application-source publication is not required by the MIT-licensed Whisper weights, whisper.cpp or jose; this distribution repository does not publish private development history. Electron's bundled third-party components also have individual licenses, including file-level source obligations. Their complete notices and corresponding versioned source locations are provided below; rights under those licenses remain in effect.
 
 | Component | Version / origin | License / included notice | Corresponding source |

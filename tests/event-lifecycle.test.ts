@@ -1,0 +1,5 @@
+import {expect,it} from 'vitest';
+import {sendIfAlive} from '../src/event-lifecycle';
+import type {EventTarget} from '../src/event-lifecycle';
+it('avoids accessing destroyed BrowserWindow getters during shutdown and late events',()=>{let accessed=false;const dead={isDestroyed:()=>true,get webContents():EventTarget['webContents']{accessed=true;throw new Error('Object has been destroyed');}};for(const event of ['audio-meter','action','answer','model-download'])expect(sendIfAlive(dead,event,{})).toBe(false);expect(accessed).toBe(false);expect(sendIfAlive(undefined,'audio-meter',0)).toBe(false);});
+it('sends only to live contents, without hiding unexpected errors',()=>{let dead=false;const sent:unknown[]=[];const target={isDestroyed:()=>false,webContents:{isDestroyed:()=>dead,send:(_channel:string,value:unknown)=>sent.push(value)}};expect(sendIfAlive(target,'audio-meter',.5)).toBe(true);dead=true;expect(sendIfAlive(target,'audio-meter',0)).toBe(false);expect(sent).toEqual([.5]);expect(()=>sendIfAlive({isDestroyed:()=>false,webContents:{isDestroyed:()=>false,send:()=>{throw new Error('Unexpected defect');}}},'audio-meter',0)).toThrow('Unexpected defect');});

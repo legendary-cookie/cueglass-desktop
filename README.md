@@ -29,4 +29,12 @@ Pin locks movement; Top controls always-on-top. Light/Dark/High contrast, custom
 - [Troubleshooting](docs/TROUBLESHOOTING.md)
 - [Third-party notices and corresponding source links](docs/THIRD-PARTY.md)
 
-This repository contains public distribution documentation and release assets. It does not publish application development history or private user/test data. See the release manifest for exact runtime/model versions and checksums. Report issues without tokens, email/account identifiers, recordings, meeting screenshots or personal documents.
+## Source and build
+
+This repository includes a sanitized Cueglass 0.6.0 source snapshot, tests, build scripts, and installer source. See [building from source](docs/BUILD.md). Private development history, credentials, personal sessions and raw diagnostic evidence are excluded. The `v0.6.0` tag records the original installer/documentation release; `v0.6.0-source` identifies the subsequently authorized source snapshot. The original installer bytes are unchanged.
+
+## License
+
+Original Cueglass code and documentation use the [MIT License](LICENSE), copyright 2026 legendary-cookie. You may use, modify, distribute and sell it, including in closed-source products, while retaining its copyright and license notice. Third-party models, runtimes and notices retain their own licenses; see [third-party notices](docs/THIRD-PARTY.md) and [NOTICE.md](NOTICE.md).
+
+See the release manifest for exact runtime/model versions and checksums. Report issues without tokens, email/account identifiers, recordings, meeting screenshots or personal documents.

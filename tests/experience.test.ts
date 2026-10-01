@@ -1,0 +1,33 @@
+import {describe,it,expect} from 'vitest';
+import {themes,contrast,themeColors,savedSelections,speechPresets,initialSelection,providerPreference} from '../src/experience';
+import {overlayPreferences} from '../src/overlay';
+import {languagePreferences,languagePrompt,whisperArguments} from '../src/languages';
+import {message} from '../src/i18n';
+import type {ExperiencePreferences,ProviderInfo} from '../src/shared';
+import {TurnGate,realtimeSettings} from '../src/realtime';
+import {likelyQuestion} from '../src/core';
+describe('appearance safety and independent controls',()=>{
+ it('keeps readable preset text and secondary text contrast',()=>{expect(contrast('#ffffff','#000000')).toBeCloseTo(21);for(const colors of Object.values(themes)){expect(contrast(colors.text,colors.background)).toBeGreaterThanOrEqual(4.5);expect(contrast(colors.muted,colors.background)).toBeGreaterThanOrEqual(4.5);}});
+ it('bounds editable colors and restores preset colors',()=>{expect(themeColors({text:'red;display:none',background:'#123456'})).toMatchObject({text:themes.light.text,background:'#123456'});const custom=overlayPreferences({colors:{text:'#ffffff',background:'#ffffff'}});expect(custom.theme).toBe('custom');expect(overlayPreferences({theme:'dark'},custom).colors).toEqual(themes.dark);});
+ it('locks position independently of topmost and keeps it on restart',()=>{const pinned=overlayPreferences({positionLocked:true,topmost:false});expect(pinned).toMatchObject({positionLocked:true,topmost:false});expect(overlayPreferences(JSON.parse(JSON.stringify(pinned)))).toMatchObject({positionLocked:true,topmost:false});});
+ it('preserves preset names with their saved colors and rejects prototype keys',()=>{const preset=overlayPreferences({theme:'contrast'});expect(overlayPreferences(JSON.parse(JSON.stringify(preset))).theme).toBe('contrast');expect(overlayPreferences({theme:'__proto__'}).theme).toBe('light');expect(languagePreferences({speechLanguage:'__proto__' as 'en'}).speechLanguage).toBe('auto');});
+});
+describe('language and model preferences',()=>{
+ it('uses only multilingual models in Fast/Balanced/Higher accuracy presets',()=>{expect(speechPresets.map(p=>p.id)).toEqual(['tiny-q5_1','base-q5_1','small-q5_1']);});
+ it('keeps speech and answer language separate and ignores unknown/unsafe codes',()=>{expect(languagePreferences({speechLanguage:'zh',answerLanguage:'es',uiLocale:'zh' as 'en'})).toMatchObject({speechLanguage:'zh',answerLanguage:'es',uiLocale:'en'});expect(languagePreferences({speechLanguage:'../../x' as 'en'}).speechLanguage).toBe('auto');expect(message('pin','missing')).toBe('Pin');});
+ it('requests original-language transcription without translation and rejects English-only mismatch',()=>{const settings=languagePreferences({speechLanguage:'zh',answerLanguage:'es'});expect(whisperArguments('ggml-base-q5_1.bin','input.wav','output',settings)).toContain('zh');expect(whisperArguments('ggml-base-q5_1.bin','input.wav','output',settings)).not.toContain('-tr');expect(()=>whisperArguments('ggml-base.en-q5_1.bin','input.wav','output',settings)).toThrow('English-only');const mixed=languagePreferences({speechLanguage:'zh',mixedSpeech:true});expect(whisperArguments('ggml-base-q5_1.bin','input.wav','output',mixed)[9]).toBe('auto');});
+ it('preserves safe exact IDs and model preferences without secrets',()=>{expect(savedSelections({claude:{model:'claude-example',mode:'fast'},kimi:{model:'<script>'},unknown:{model:'x'}})).toEqual({claude:{provider:'claude',model:'claude-example',mode:'fast'}});expect(languagePrompt('es')).toContain('Spanish');expect(languagePrompt('auto')).toContain('language of the question');});
+});
+describe('stable question turn gate',()=>{
+ it('waits for voice end and stable transcript, deduplicates and respects cooldown',()=>{const gate=new TurnGate();const settings=realtimeSettings({pauseMs:900,cooldownMs:4000});gate.voice(true,0);gate.update('如何设计 API？',200);expect(gate.offer(5000,settings,true,true,false)).toBeUndefined();gate.voice(false,5000);expect(gate.offer(5800,settings,true,true,false)).toBeUndefined();expect(gate.offer(6000,settings,true,true,false)).toBe('如何设计 API？');expect(gate.offer(11000,settings,true,true,false)).toBeUndefined();gate.update('¿Cómo funciona este sistema?',11000);expect(gate.offer(12000,settings,true,true,false)).toBe('¿Cómo funciona este sistema?');});
+ it('requires opt-in and interviewer intent, exposes interruption and resets safely',()=>{const gate=new TurnGate();gate.update('This is a statement.',0);expect(gate.offer(10000,realtimeSettings({}),true,true,false)).toBeUndefined();gate.update('How does this work?',10000);expect(gate.offer(12000,realtimeSettings({}),false,true,false)).toBeUndefined();expect(gate.offer(12000,realtimeSettings({}),true,false,false)).toBeUndefined();expect(gate.offer(12000,realtimeSettings({}),true,true,true)).toBeUndefined();expect(gate.voice(true,12000)).toBe(true);expect(gate.voice(true,12100)).toBe(false);gate.reset();expect(gate.offer(20000,realtimeSettings({}),true,true,false)).toBeUndefined();});
+ it('supports multilingual punctuation/intent and bounds cost timing',()=>{for(const text of ['为什么这样设计','¿Cómo funciona?','Comment fonctionne ce système','كيف تعمل؟','この設計はなぜですか？'])expect(likelyQuestion(text)).toBe(true);expect(realtimeSettings({pauseMs:0,cooldownMs:Infinity})).toEqual({pauseMs:600,cooldownMs:6000});});
+});
+
+describe('primary provider restoration',()=>{
+ const prefs:ExperiencePreferences={languages:languagePreferences({}),realtime:realtimeSettings({}),preferredModels:{}};
+ const available:ProviderInfo[]=[{id:'chatgpt',name:'ChatGPT',connected:true,models:[],note:''},{id:'claude',name:'Claude',connected:false,models:[],note:''},{id:'practice',name:'Practice',connected:true,models:[],note:''}];
+ it('chooses the existing connected ChatGPT session instead of an implicit practice default',()=>{expect(initialSelection(prefs,available)).toMatchObject({provider:'chatgpt',model:'auto'});});
+ it('keeps an explicit practice or disconnected provider choice without silently falling back',()=>{expect(initialSelection({...prefs,preferredProvider:'practice'},available).provider).toBe('practice');expect(initialSelection({...prefs,preferredProvider:'claude',preferredModels:{claude:{provider:'claude',model:'saved-model',mode:'default'}}},available)).toMatchObject({provider:'claude',model:'saved-model'});});
+ it('restores a saved cheap/fast model and rejects unknown provider keys',()=>{expect(initialSelection({...prefs,preferredProvider:'chatgpt',preferredModels:{chatgpt:{provider:'chatgpt',model:'synthetic-low-usage',mode:'fast'}}},available)).toMatchObject({model:'synthetic-low-usage',mode:'fast'});expect(providerPreference('__proto__')).toBeUndefined();});
+});
