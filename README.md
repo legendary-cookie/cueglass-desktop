@@ -6,6 +6,10 @@ A configurable desktop overlay for interview practice and permitted meeting assi
 
 The installer includes Fast, Balanced and Higher accuracy multilingual Whisper models. No separate Python, Ollama or model download is needed for these presets. Balanced is the default. Online AI answers require your own supported account or separately billed provider credentials; local transcription works without them.
 
+## New to Cueglass? Start here
+
+**[Open the step-by-step beginner guide](docs/BEGINNER-GUIDE.md)** — plain-language instructions to download and install Cueglass, try it without an account, connect AI answers, and get help if something does not work.
+
 ## Before you install
 
 - Windows x64; Windows 11 recommended. See [requirements and measured results](docs/REQUIREMENTS.md).
@@ -21,6 +25,7 @@ Pin locks movement; Top controls always-on-top. Light/Dark/High contrast, custom
 
 ## Documentation
 
+- [Beginner guide: follow along step by step](docs/BEGINNER-GUIDE.md)
 - [Install, upgrade, uninstall and first session](docs/QUICKSTART.md)
 - [Providers, audio, languages, automation, vision and controls](docs/USER-GUIDE.md)
 - [Three bundled models, sizes, expected trade-offs and hashes](docs/MODELS.md)
