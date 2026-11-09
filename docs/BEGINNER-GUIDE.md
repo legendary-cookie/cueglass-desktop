@@ -4,6 +4,8 @@ This guide explains how to install Cueglass, try it, and get your first answer.
 
 You need a Windows computer. Windows 11 is recommended.
 
+**Prefer to watch?** [Watch the video](video/cueglass-walkthrough.mp4) (about 1 minute, with captions) of trying Cueglass without an account: open Controls, type a question and get a practice answer. It never turns on your microphone. (Click the link, then press the play button.)
+
 ## 1. Download Cueglass
 
 1. Open the [Cueglass download page](https://github.com/legendary-cookie/cueglass-desktop/releases/latest).
