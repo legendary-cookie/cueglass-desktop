@@ -11,6 +11,8 @@ You need a Windows computer. Windows 11 is recommended.
 3. Download the file whose name starts with **Cueglass-Setup** and ends with **.exe**. For version 0.6.0, it is `Cueglass-Setup-0.6.0-x64.exe`.
 4. Also download **SHA256SUMS.txt**. This lets you check that the installer downloaded correctly.
 
+   ![The GitHub release page. Under Assets, the file Cueglass-Setup-0.6.0-x64.exe is outlined in red.](images/00-download-page.png)
+
 Choose the installer rather than either of the **Source code** downloads.
 
 ### Check the download
@@ -49,6 +51,9 @@ If you already have another copy open, save any session you want to keep and qui
 Start here to learn the controls.
 
 1. Open **Controls**.
+
+
+   ![The Controls tab showing the interface, speech and answer language menus and the Fast, Balanced and Higher accuracy speech presets.](images/02-controls.png)
 2. Leave the speech preset on **Balanced**. The required speech files are already included.
 3. Choose the language you will speak, such as **English**.
 4. Select **Offline practice**.
@@ -60,6 +65,8 @@ Start here to learn the controls.
 
 Offline practice shows a labelled example response. It does not generate an AI answer. You do not need an AI account for this practice.
 
+![The Session tab after pressing Answer now with Offline practice selected, showing a clearly labelled local template answer.](images/04-answer-now.png)
+
 Press **Pause** or **Stop** when you finish.
 
 ## 4. Connect an account for AI answers
@@ -67,6 +74,9 @@ Press **Pause** or **Stop** when you finish.
 Online AI answers need a supported account or your own provider key. A provider key is a private access code from an AI service; separate usage charges may apply.
 
 1. Open **Accounts**.
+
+
+   ![The Accounts tab with the Continue with ChatGPT button and a list of other providers.](images/03-accounts.png)
 2. Choose the service you want to use.
 3. If using ChatGPT, follow the **Sign in with ChatGPT** instructions. Availability depends on your account and the service.
 4. If using another supported service, enter your own key where requested. Keep that key private.
