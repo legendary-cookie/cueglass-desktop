@@ -10,6 +10,8 @@ The installer includes Fast, Balanced and Higher accuracy multilingual Whisper m
 
 **[Open the step-by-step beginner guide](docs/BEGINNER-GUIDE.md)** — plain-language instructions to download and install Cueglass, try it without an account, connect AI answers, and get help if something does not work.
 
+**Prefer to watch?** [Watch the video](docs/video/cueglass-walkthrough.mp4) (about 1 minute, with captions) of trying Cueglass without an account: open Controls, type a question and get a practice answer. It never turns on your microphone. (Click the link, then press the play button.)
+
 ## Before you install
 
 - Windows x64; Windows 11 recommended. See [requirements and measured results](docs/REQUIREMENTS.md).
